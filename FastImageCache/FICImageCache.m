@@ -74,6 +74,7 @@ static FICImageCache *__imageCache = nil;
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
         __imageCacheDispatchQueue = dispatch_queue_create("com.path.FastImageCacheQueue", NULL);
+        dispatch_set_target_queue(__imageCacheDispatchQueue, dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_LOW, 0));
     });
     return __imageCacheDispatchQueue;
 }
